@@ -49,18 +49,22 @@ var Auth = {
 	authenticate: function(cookie){
 		
 		var MAC = this.hmac();
-		var sign = cookie.sign;
-		delete cookie.sign;
+		var sign = cookie.s;
+		delete cookie.s;
 
 		cookie = this.stringifyCookie(cookie);
+		console.log(cookie);
 		MAC.update(cookie);
 
 		var calc_sign = MAC.digest('hex');
 
 		if(calc_sign == sign){
 			console.log('access granted'.green.inverse);
+			return true;
 		} else {
-			console.log('access denied'.bold.red.inverse, calc_sign);
+			console.log('access denied'.bold.red.inverse, calc_sign, sign);
+
+			return false;
 		}
 
 
@@ -104,5 +108,15 @@ exports.create = function(req, res, next){
 		
 	});
 
+}
+
+exports.index = function(req, res, next){
+
+	res.send('s\n');
+
+	var cookie = querystring.parse(req.cookies.v, '-', '.');
+
+	Auth.authenticate(cookie);
+	
 }
 

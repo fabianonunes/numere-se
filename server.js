@@ -17,7 +17,7 @@ app.logger	= winston;
 app.logger.setLevels(winston.config.syslog.levels);
 app.logger.add(
 	app.logger.transports.File,
-	{ filename: 'flashcards.log' }
+	{ filename: 'numerese.log' }
 );
 
 require('./lib/setup.js').setup({

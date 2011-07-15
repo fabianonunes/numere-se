@@ -1,13 +1,17 @@
 #!/usr/local/bin/node
 
-var express	= require('express')
+var fs		= require('fs')
 , path		= require('path')
-, syslog	= require('sys')
+, express	= require('express')
 , winston	= require('winston')
 , root		= __dirname;
 
-global._	= require('underscore')
-global.app	= express.createServer();
+
+global._	= require('underscore');
+global.app	= express.createServer({
+	key: fs.readFileSync('key.pem'),
+	cert: fs.readFileSync('cert.pem')
+});
 app.logger	= winston;
 
 app.logger.setLevels(winston.config.syslog.levels);

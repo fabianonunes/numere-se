@@ -4,75 +4,15 @@ html
 		meta(charset="utf-8")
 		title= settings.title
 
-		link(rel="stylesheet", type="text/css", href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:light' rel='stylesheet' type='text/css")
-		link(href="http://fonts.googleapis.com/css?family=Cantarell:regular,italic,bold,bolditalic", rel="stylesheet", type="text/css")
-		link(rel="stylesheet", type="text/css", href="/css/styles.css")
-
-		script(src="js/vendor/head.js")
-
 	body
 
-		div(class="dialog")
-			input(type="text", placeholder="busca...")
+		h1 Sign in
+		
+		form(method="post", action="/login")
+			input(type="text", name="user")
+			br
+			input(type="text", name="pass")
+			br
+			input(type="submit")
 
-		div(class="nav")
-			
-			div(class="search")
-				input(type="text", placeholder="busca...")
-			
-			ul
-				li
-					div(class="img")
-					div(class="progress p20")
-						div
-					| Vocabulário Espanhol
-					div(class="details")
-						| 37 cartas
-				li
-					div(class="img")
-					div(class="progress p60")
-						div
-					| EcmaScript
-					div(class="details")
-						| 20 cartas
-				li
-					div(class="img")
-					div(class="progress p40")
-						div
-					| jQuery
-					div(class="details")
-						| 14 cartas
 
-			footer
-				a(class="iconic plus")
-				a(class="iconic cog")
-
-		div(class="main")
-
-			div(class="deck")
-
-				h2 EcmaScript
-
-				div(class="card")
-
-					div(class="question")
-						p The control statement on a while loop is tested
-
-					div(class="answer")
-						p before each time through the loop
-
-					div(class="tools")
-						div
-							a(class="iconic star")
-							a(class="iconic star")
-							a(class="iconic star")
-							a(class="iconic star")
-				
-				footer(class="options") 
-					a(class="iconic clock")
-					a(class="iconic pencil")
-					a(class="iconic image")
-					a(class="icon next", href="#proxima") ›
-					a(class="icon previous", href="#anterior") ‹
-
-		script(src="js/fcard.js")

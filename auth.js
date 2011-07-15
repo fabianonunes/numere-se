@@ -13,7 +13,7 @@ var Auth = {
 
 		var Store = redback.createHash(user);
 
-		Store.get('v', console.log);
+		// Store.get('v', console.log);
 
 		var salt = rbuff.toHex();
 		var v_auth = this.aN(salt, password);

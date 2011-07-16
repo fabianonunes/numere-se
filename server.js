@@ -8,10 +8,13 @@ var fs		= require('fs')
 
 
 global._	= require('underscore');
-global.app	= express.createServer({
-	key: fs.readFileSync('key.pem'),
-	cert: fs.readFileSync('cert.pem')
-});
+global.app	= express.createServer();
+
+// var ssl = {
+// 	key: fs.readFileSync('key.pem'),
+// 	cert: fs.readFileSync('cert.pem')
+// };
+
 app.logger	= winston;
 
 app.logger.setLevels(winston.config.syslog.levels);

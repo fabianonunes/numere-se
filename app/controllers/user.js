@@ -1,10 +1,9 @@
 
-
 var rbytes = require('rbytes')
 	, hashlib = require('hashlib')
 	, mongoose = require("mongoose");
 
-var User = mongoose.model('User');
+
 
 var Auth = {
 
@@ -18,6 +17,8 @@ var Auth = {
 }
 
 exports.create = function(req, res, next){
+
+	var User = mongoose.model('User');
 
 	var user = new User();
 	user.username = req.body.user;

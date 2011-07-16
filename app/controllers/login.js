@@ -3,12 +3,9 @@
 var rbytes = require('rbytes')
 	, _ = require('underscore')
 	, crypto = require('crypto')
+	, qs = require('querystring')
 	, hashlib = require('hashlib')
-	, mongoose = require("mongoose")
-	, mongoose	= require("mongoose")
-	, querystring = require('querystring');
-
-var User = mongoose.model('User');
+	, mongoose = require("mongoose");
 
 var Auth = {
 
@@ -25,15 +22,14 @@ var Auth = {
 				c: c_auth
 			};
 			
-			var MAC = this.hmac();
-
+			var MAC = crypto.createHmac('sha256', this.K);
 			MAC.update(this.stringifyCookie(cookie));
 			cookie.s = MAC.digest('hex');
 
 			res.cookie('v', this.stringifyCookie(cookie), {
-				expires: new Date(cookie.x),
-				httpOnly: true,
-				secure: true
+				expires: new Date(cookie.x)
+				, httpOnly: true
+				// , secure: true
 			});
 
 			res.send({ok:true});
@@ -46,31 +42,29 @@ var Auth = {
 
 	},
 
-	authenticate: function(cookie){
-		
-		var MAC = this.hmac();
+	authenticate: function(verb, req, res, next){
+
+		var cookie = qs.parse(req.cookies.v, '-', '.');
+		var MAC = crypto.createHmac('sha256', this.K);
 		var sign = cookie.s;
 		delete cookie.s;
 
 		cookie = this.stringifyCookie(cookie);
-		console.log(cookie);
 		MAC.update(cookie);
 
-		var calc_sign = MAC.digest('hex');
-
-		if(calc_sign == sign){
-			console.log('access granted'.green.inverse);
-			return true;
+		if(MAC.digest('hex') == sign){
+			req.auth = true;
+			verb(req, res, next);
 		} else {
-			console.log('access denied'.bold.red.inverse, calc_sign, sign);
-
-			return false;
+			next(new Error('access denied'.bold.red.inverse));
 		}
 
 
 	},
 
 	findUser : function(user, next){
+
+		var User = mongoose.model('User');
 
 		User.find({username:user}, [], {
 			limit : 1
@@ -87,14 +81,11 @@ var Auth = {
 		return _.map(_.keys(cookie).sort(), function(k){
 			return k+"."+cookie[k];
 		}).join('-');
-	},
-
-	hmac : function(){
-		return crypto.createHmac('sha256', this.K);
 	}
 
 }
 
+_.bindAll(Auth);
 
 exports.create = function(req, res, next){
 
@@ -110,13 +101,11 @@ exports.create = function(req, res, next){
 
 }
 
-exports.index = function(req, res, next){
+exports.index = _.wrap(function(req, res, next){
 
-	res.send('s\n');
+	res.send(req.auth + '\n');
 
-	var cookie = querystring.parse(req.cookies.v, '-', '.');
+}, Auth.authenticate);
 
-	Auth.authenticate(cookie);
-	
-}
+
 

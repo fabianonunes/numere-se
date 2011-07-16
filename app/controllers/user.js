@@ -3,8 +3,6 @@ var rbytes = require('rbytes')
 	, hashlib = require('hashlib')
 	, mongoose = require("mongoose");
 
-
-
 var Auth = {
 
 	H : hashlib.sha256,

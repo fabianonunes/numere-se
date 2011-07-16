@@ -25,7 +25,6 @@ require('./lib/setup.js').setup({
 	, environment:	environment
 	, mongourl:		environment.DOTCLOUD_DATA_MONGODB_URL
 	, mongoose:		require('mongoose')
-	, io:			require('socket.io')
 	, express:		express
 	, paths:		{
 		  models:		path.join(root, 'app', 'models')
@@ -34,5 +33,6 @@ require('./lib/setup.js').setup({
 		, images:		path.join(root, 'ui/images')
 		, controllers:	path.join(root, 'app', 'controllers')
 	}
-	// redis:	require('redis-client').createClient(),
+	// io : require('socket.io')
+	// redis : require('redis-client').createClient()
 });

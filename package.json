@@ -1,6 +1,6 @@
 {
-  "name": "smx",
-  "description": "SMS sender",
+  "name": "numerese",
+  "description": "numere.se",
   "version": "0.0.1",
   "private": true,
   "dependencies": {
@@ -19,6 +19,7 @@
     , "rbytes" : "*"
     , "redback" : "*"
     , "colors" : "*"
+    , "tictoc" : "*"
   },
   "engines": { "node": ">= 0.4.4" }
 }

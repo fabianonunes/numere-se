@@ -17,7 +17,7 @@ exports.create = function(req, res, next){
 
 }
 
-exports._index = _.wrap(function(req, res, next){
+exports.index = _.wrap(function(req, res, next){
 
 	res.send('none' + '\n');
 

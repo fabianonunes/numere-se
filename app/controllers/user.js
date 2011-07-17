@@ -1,30 +1,24 @@
 
-var rbytes = require('rbytes')
-	, hashlib = require('hashlib')
-	, mongoose = require("mongoose");
+var hashlib		= require('hashlib')
+	, rbytes	= require('rbytes')
+	, mongoose	= require('mongoose')
+	, secure	= app.settings.secure;
 
-var Auth = {
-
-	H : hashlib.sha256,
-
-	aN : function(salt, pass){
-		for(i=0;i<1024;i++){ salt = this.H(salt+pass); }
-		return salt;
-	}
-
-}
+var User = mongoose.model('User');
 
 exports.create = function(req, res, next){
 
-	var User = mongoose.model('User');
+	var salt = rbytes.randomBytes(32).toHex();
 
-	var user = new User();
-	user.username = req.body.user;
-	user.salt = rbytes.randomBytes(32).toHex();
-	user.auth = Auth.aN(user.salt, req.body.pass);
-	
+	var user = new User({
+		username : req.body.user
+		, salt : salt
+		, auth : secure.H(secure.aN(salt, req.body.pass))
+	});
+
 	user.save(function(err, user){
 		if(err) return next(err);
+		console.log(user);
 		res.send({
 			user: user.username
 		});

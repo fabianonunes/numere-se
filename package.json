@@ -4,9 +4,9 @@
 	"version": "0.0.1",
 	"private": true,
 	"dependencies": {
-		"express": "2.x"
-		, "express-resource": ">= 0.0.1"
-		, "jade": "0.9.x"
+		"express": "*"
+		, "express-resource": "*"
+		, "jade": "*"
 		, "stylus": "*"
 		, "nib": "*"
 		, "winston" : "*"
@@ -14,6 +14,8 @@
 		, "mongoose": "*"
 		, "hashlib" : "*"
 		, "rbytes" : "*"
+        , "bcrypt" : "*"
+        , "tictoc" : "*"
 	},
 	"engines": { "node": ">= 0.4.4" }
 }

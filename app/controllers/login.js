@@ -1,12 +1,13 @@
 
-var secure = app.settings.secure;
-var users = app.settings.models.user;
+var secure = app.settings.secure
+	, users = app.settings.models.user;
 
 exports.create = function(req, res, next){
 
 	users.findOne({username : req.body.user}, function(err, user){
 
-		if(err || !user) return next(err);
+		if(err) return next(err);
+		if(!user) return res.send(403);
 
 		req.user = user;
 

@@ -1,10 +1,10 @@
 
 var secure = app.settings.secure
-	, users = app.settings.models.user;
+	, User = app.settings.models.user;
 
 exports.create = function(req, res, next){
 
-	users.findOne({username : req.body.user}, function(err, user){
+	User.findOne({username : req.body.user}, function(err, user){
 
 		if(err) return next(err);
 		if(!user) return res.send(403);

@@ -5,7 +5,7 @@ var secure = app.settings.secure
 
 exports.create = function(req, res, next){
 
-	secure.login_d(req.body.user, req.body.pass).then(function(cookie){
+	secure.login(req.body.user, req.body.pass).then(function(cookie){
 
 		res.cookie('v', qs.stringify(cookie), {
 			expires: new Date(cookie.x)
@@ -15,7 +15,7 @@ exports.create = function(req, res, next){
 
 		res.send({ ok : true });
 
-	}, function(){
+	}, function(err){
 		res.send(403);
 	});
 

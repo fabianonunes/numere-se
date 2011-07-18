@@ -1,7 +1,7 @@
 
-var secure = app.settings.secure
-	, User = app.settings.models.user
-	, qs		= require('querystring');
+var secure	= app.settings.secure
+	, User	= app.settings.models.user
+	, qs	= require('querystring');
 
 exports.create = function(req, res, next){
 

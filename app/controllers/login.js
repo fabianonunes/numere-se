@@ -7,17 +7,15 @@ exports.create = function(req, res, next){
 
 	secure.login(req.body.user, req.body.pass).then(function(cookie){
 
-		res.cookie('v', qs.stringify(cookie), {
+		res.cookie('v', qs.stringify(cookie, '-', '.'), {
 			expires: new Date(cookie.x)
-			, httpOnly: true
 			// , secure: true
+			, httpOnly: true
 		});
 
 		res.send({ ok : true });
 
-	}, function(err){
-		res.send(403);
-	});
+	}, res.send.bind(res, null, 403));
 
 }
 

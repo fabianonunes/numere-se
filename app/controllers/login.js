@@ -21,23 +21,8 @@ exports.create = function(req, res, next){
 
 }
 
-exports.create_ = function(req, res, next){
-
-	User.findOne({username : req.body.user}, function(err, user){
-
-		if(err) return next(err);
-		if(!user) return res.send(403);
-
-		req.user = user;
-
-		secure.login(req, res, next);
-		
-	});
-
-}
-
 exports.index = function(req, res, next){
 
-	res.send('none' + '\n');
+	res.send('fala féla!' + '\n');
 
 }

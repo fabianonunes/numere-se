@@ -5,17 +5,19 @@ var secure	= app.settings.secure
 
 exports.create = function(req, res, next){
 
-	secure.login(req.body.user, req.body.pass).then(function(cookie){
+	secure.login(req.body.user, req.body.pass)
+	.done(function(cookie){
 
 		res.cookie('v', qs.stringify(cookie, '-', '.'), {
 			expires: new Date(cookie.x)
-			// , secure: true
+			, _secure: true
 			, httpOnly: true
 		});
 
 		res.send({ ok : true });
 
-	}, res.send.bind(res, null, 403));
+	})
+	.fail(res.send.bind(res, null, 403));
 
 }
 

@@ -34,8 +34,8 @@ exports.create_ = function(req, res, next){
 
 }
 
-exports.index = _.wrap(function(req, res, next){
+exports.index = function(req, res, next){
 
 	res.send('none' + '\n');
 
-}, secure.authenticate);
+}

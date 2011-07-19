@@ -1,0 +1,7 @@
+www:
+  type: nodejs
+  approot: numerese
+data:
+  type: mongodb
+redis:
+  type: redis

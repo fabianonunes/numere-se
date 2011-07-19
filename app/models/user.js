@@ -1,5 +1,6 @@
 
-var mongoose = require("mongoose");
+var mongoose	= require('mongoose')
+, jdefer		= require('../../lib/jdefer/jdefer');
 
 var User = new mongoose.Schema({
 	username : {
@@ -14,7 +15,21 @@ var User = new mongoose.Schema({
 
 User.virtual('id').get(function() {
 	return this._id.toHexString();
-})
+});
+
+User.statics.findByUsername = function(username){
+
+	var d	= jdefer();
+
+	this.findOne({username : username}, function(err, user){
+
+		user ? d.resolve(user) : d.reject(err || new Error('user not exixts'));
+		
+	});
+
+	return d.promise();
+
+};
 
 module.exports = mongoose.model('User', User);
 

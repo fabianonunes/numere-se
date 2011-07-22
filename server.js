@@ -24,6 +24,7 @@ require('./lib/setup.js').setup({
 	  app:			app
 	, environment:	environment
 	, mongourl:		environment.DOTCLOUD_DATA_MONGODB_URL
+	, serverKey:	'1375ed62eba9bee2e7e71099347fc39c3e210e35e1c5c8a3d616fd9657f9e315'
 	, mongoose:		require('mongoose')
 	, express:		express
 	, paths:		{

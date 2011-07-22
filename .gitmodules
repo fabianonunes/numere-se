@@ -1,0 +1,3 @@
+[submodule "lib/jdefer"]
+	path = lib/jdefer
+	url = git@github.com:fabianonunes/jdefer.git

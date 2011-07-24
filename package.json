@@ -17,6 +17,5 @@
         , "bcrypt" : "*"
         , "tictoc" : "*"
         , "deferred": "*"
-	},
-	"engines": { "node": ">= 0.4.4" }
+	}
 }

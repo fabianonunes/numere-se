@@ -1,6 +1,6 @@
 
 var mongoose	= require('mongoose')
-, jdefer		= require('../../lib/jdefer/jdefer');
+, jdefer		= require('jdefer');
 
 var User = new mongoose.Schema({
 	username : {

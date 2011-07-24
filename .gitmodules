@@ -1,6 +1,6 @@
 [submodule "lib/jdefer"]
-	path = node_modules/jdefer
+	path = node_modules/fabtc/jdefer
 	url = git@github.com:fabianonunes/jdefer.git
 [submodule "lib/secure"]
-	path = node_modules/secure
+	path = node_modules/fabtc/secure
 	url = git@github.com:fabianonunes/secure.git

@@ -1,3 +1,4 @@
 node_modules/*
-!node_modules/fabtc/*/*
+!node_modules/jdefer
+!node_modules/secure
 *log

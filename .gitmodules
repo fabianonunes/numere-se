@@ -3,4 +3,4 @@
 	url = git@github.com:fabianonunes/jdefer.git
 [submodule "lib/secure"]
 	path = node_modules/secure
-	url = https://fabianonunes@github.com/fabianonunes/secure.git
+	url = git@github.com:fabianonunes/secure.git

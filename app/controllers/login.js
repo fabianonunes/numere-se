@@ -17,7 +17,7 @@ exports.create = function(req, res, next){
 		res.send({ ok : true });
 
 	})
-	.fail(res.send.bind(res, null, 403));
+	.fail(res.send.bind(res, null, 401));
 
 }
 
